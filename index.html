@@ -1,40 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-	<title>JQuery HTML5 QR Code Scanner using Instascan JS Example - ItSolutionStuff.com</title>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Camera selection</title>
+  <link rel="stylesheet" href="./app.css" />
 
- 
-	<script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
 </head>
-<body>
-  
-    <h1>JQuery HTML5 QR Code Scanner using Instascan JS Example - ItSolutionStuff.com</h1>
-    
-    <video id="preview"></video>
-    <script type="text/javascript">
-      let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
-      scanner.addListener('scan', function (content) {
-        alert(content);
-      });
-      Instascan.Camera.getCameras().then(function (cameras) {
-        if (cameras.length > 0) {
-          var selectedCam = cameras[0];
-	    $.each(cameras, (i, c) => {
-		if (c.name.indexOf('back') != -1) {
-		    selectedCam = c;
-		    return false;
-		}
-	    });
 
-	    scanner.start(selectedCam);
-        } else {
-          console.error('No cameras found.');
-        }
-      }).catch(function (e) {
-        console.error(e);
-      });
-    </script>
-   
+<body>
+
+  <header>
+    <h1>Camera fun</h1>
+  </header>
+
+  <main>
+    <div class="controls">
+      <button id="button">Get camera</button>
+      <select id="select">
+        <option></option>
+      </select>
+    </div>
+
+    <video id="video" autoplay playsinline></video>
+  </main>
+
+  <footer>
+    <p>Built by
+      <a href="https://twitter.com/philnash">@philnash</a>
+    </p>
+  </footer>
+
+  <script src="./app.js"></script>
 </body>
+
 </html>
